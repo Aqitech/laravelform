@@ -10,7 +10,7 @@ class Discussion extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id','channel_id','title','content'
+        'user_id','channel_id','title','slug','content'
     ];
 
     public function channel()

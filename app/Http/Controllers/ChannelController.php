@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Channel;
+use Session;
 
 class ChannelController extends Controller
 {
@@ -13,7 +15,9 @@ class ChannelController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Channels';
+        $channels = Channel::all();
+        return view('channels.index')->with(compact('title','channels'));
     }
 
     /**
@@ -23,7 +27,8 @@ class ChannelController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Create Channel';
+        return view('channels.create')->with(compact('title'));
     }
 
     /**
@@ -34,7 +39,15 @@ class ChannelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:255'
+        ]);
+        Channel::create([
+            'title' => $request->title
+        ]);
+
+        Session::flash('success', 'Channel Create successfully!');
+        return redirect()->route('channels.index');
     }
 
     /**
@@ -56,7 +69,10 @@ class ChannelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = 'Edit Channel';
+        $channel = Channel::find($id);
+
+        return view('channels.edit')->with(compact('title','channel'));
     }
 
     /**
@@ -68,7 +84,16 @@ class ChannelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:255'
+        ]);
+
+        $channel = Channel::find($id);
+        $channel->title = $request->title;
+        $channel->save();
+
+        Session::flash('success', 'Channel Update successfully!');
+        return redirect()->route('channels.index');
     }
 
     /**
@@ -79,6 +104,9 @@ class ChannelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Channel::destroy($id);
+
+        Session::flash('error', 'Channel Delete successfully!');
+        return redirect()->route('channels.index');
     }
 }
