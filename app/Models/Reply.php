@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Reply extends Model
 {
@@ -16,5 +17,9 @@ class Reply extends Model
     public function discussions()
     {
         return $this->belongsTo('App\Model\Discussion');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }
