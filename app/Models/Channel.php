@@ -9,10 +9,10 @@ class Channel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title'];
+    protected $fillable = ['title','slug'];
 
     public function discussions()
     {
-        return $this->hasMany('App\Model\Discussion');
+        return $this->hasMany('App\Models\Discussion');
     }
 }

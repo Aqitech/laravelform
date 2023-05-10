@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use App\Models\Channel;
 
 class ChannelTableSeeder extends Seeder
@@ -15,14 +16,14 @@ class ChannelTableSeeder extends Seeder
      */
     public function run()
     {
-        $channel1 = ['title' => 'Laravel'];
-        $channel2 = ['title' => 'PHP'];
-        $channel3 = ['title' => 'VueJS'];
-        $channel4 = ['title' => 'Javascript'];
-        $channel5 = ['title' => 'Wordpress'];
-        $channel6 = ['title' => 'HTML'];
-        $channel7 = ['title' => 'CSS'];
-        $channel8 = ['title' => 'Bootstrap'];
+        $channel1 = ['title' => 'Laravel', 'slug' => Str::slug('laravel')];
+        $channel2 = ['title' => 'PHP', 'slug' => Str::slug('PHP')];
+        $channel3 = ['title' => 'VueJS', 'slug' => Str::slug('VueJS')];
+        $channel4 = ['title' => 'Javascript', 'slug' => Str::slug('Javascript')];
+        $channel5 = ['title' => 'Wordpress', 'slug' => Str::slug('Wordpress')];
+        $channel6 = ['title' => 'HTML', 'slug' => Str::slug('HTML')];
+        $channel7 = ['title' => 'CSS', 'slug' => Str::slug('CSS')];
+        $channel8 = ['title' => 'Bootstrap', 'slug' => Str::slug('Bootstrap')];
 
         Channel::create($channel1);
         Channel::create($channel2);

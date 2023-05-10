@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Channel;
 use Session;
 
@@ -43,7 +44,8 @@ class ChannelController extends Controller
             'title' => 'required|max:255'
         ]);
         Channel::create([
-            'title' => $request->title
+            'title' => $request->title,
+            'slug' => Str::slug($request->title)
         ]);
 
         Session::flash('success', 'Channel Create successfully!');
@@ -90,6 +92,7 @@ class ChannelController extends Controller
 
         $channel = Channel::find($id);
         $channel->title = $request->title;
+        $channel->slug = Str::slug($request->title);
         $channel->save();
 
         Session::flash('success', 'Channel Update successfully!');

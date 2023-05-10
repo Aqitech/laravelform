@@ -25,6 +25,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
+                        @if(Auth::check())
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
@@ -34,6 +35,7 @@
                                 </svg>
                             </div>
                         </button>
+                        @endif
                     </x-slot>
 
                     <x-slot name="content">
@@ -76,6 +78,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
+        @if(Auth::check())
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
@@ -99,5 +102,6 @@
                 </form>
             </div>
         </div>
+        @endif
     </div>
 </nav>

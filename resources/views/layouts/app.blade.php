@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title') | {{ str_replace('_', ' ', config('app.name', 'Laravel Form')) }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -52,7 +52,7 @@
                                         <ul class="list-group">
                                             @foreach($channels as $channel)
                                             <li class="list-group-item">
-                                                {{ $channel->title }}
+                                                <a href="{{ route('channel', $channel->slug) }}">{{ $channel->title }}</a>
                                             </li>
                                             @endforeach
                                         </ul>

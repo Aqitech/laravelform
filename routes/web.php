@@ -4,6 +4,7 @@ use App\Http\Controllers\DiscussionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialsController;
 use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\RepliesController;
 use App\Http\Controllers\FormsController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,14 +33,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+    Route::get('/form', [FormsController::class, 'index'])->name('form');
+    Route::get('/channel/{slug}', [FormsController::class, 'channel'])->name('channel');
+    Route::get('/discussion/{slug}', [DiscussionController::class, 'show'])->name('discussion.show');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('channels', ChannelController::class);
 
-    Route::get('/discussion/create', [DiscussionController::class, 'create'])->name('discussion.create');
+    Route::get('/discussion/create/new', [DiscussionController::class, 'create'])->name('discussion.create');
     Route::post('/discussion/store', [DiscussionController::class, 'store'])->name('discussion.store');
-    Route::get('/discussion/{slug}', [DiscussionController::class, 'show'])->name('discussion.show');
 
-    Route::get('/form', [FormsController::class, 'index'])->name('form');
+    Route::post('/discussion/reply/{id}', [DiscussionController::class, 'reply'])->name('discussion.reply');
+
+    Route::get('/reply/dislike/{id}',[RepliesController::class, 'dislike'])->name('reply.dislike');
+    Route::get('/reply/like/{id}',[RepliesController::class, 'like'])->name('reply.like');
 });
 
 require __DIR__.'/auth.php';

@@ -16,7 +16,7 @@ class Discussion extends Model
 
     public function channel()
     {
-        return $this->belongsTo('App\Model\Channel');
+        return $this->belongsTo('App\Models\Channel');
     }
     public function user()
     {

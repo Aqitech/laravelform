@@ -11,6 +11,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                @if(count($discussions) > 0)
                 <div class="p-6 text-gray-900">
                     @foreach($discussions as $discussion)
                     <div class="block rounded-lg bg-white dark:bg-neutral-700 mb-6">
@@ -42,6 +43,9 @@
                         {{ $discussions->links() }}
                     </div>
                 </div>
+                @else
+                <h2>No Discussion avalable for this channel</h2>
+                @endif
             </div>
         </div>
     </div>

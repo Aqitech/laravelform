@@ -18,7 +18,7 @@ class DiscussionTableSeeder extends Seeder
     {
         $d1 = [
             'title' => 'Implemanting OAUTH Laravel',
-            'slug' => str::snake('Implemanting OAUTH Laravel', '-'),
+            'slug' => Str::slug('Implemanting OAUTH Laravel'),
             'user_id' => 1,
             'channel_id' => 1,
             'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
@@ -26,7 +26,7 @@ class DiscussionTableSeeder extends Seeder
 
         $d2 = [
             'title' => 'Pagination in vuejs',
-            'slug' => str::snake('Pagination in vuejs', '-'),
+            'slug' => Str::slug('Pagination in vuejs'),
             'user_id' => 1,
             'channel_id' => 3,
             'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
@@ -34,7 +34,7 @@ class DiscussionTableSeeder extends Seeder
 
         $d3 = [
             'title' => 'Vuejs Event listner',
-            'slug' => str::snake('Vuejs Event listner', '-'),
+            'slug' => Str::slug('Vuejs Event listner'),
             'user_id' => 2,
             'channel_id' => 3,
             'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
@@ -42,7 +42,7 @@ class DiscussionTableSeeder extends Seeder
 
         $d4 = [
             'title' => 'Laravel homested error',
-            'slug' => str::snake('Laravel homested error', '-'),
+            'slug' => Str::slug('Laravel homested error'),
             'user_id' => 2,
             'channel_id' => 1,
             'content' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'

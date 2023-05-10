@@ -1,4 +1,6 @@
 <x-guest-layout>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -47,4 +49,17 @@
     <a href="{{ route('social.login',['provider'=>'facebook']) }}" class="btn btn-facebook"> Facebook</a>
     <a href="{{ route('social.login',['provider'=>'google']) }}" class="btn btn-google"> Google</a>
     <a href="{{ route('social.login',['provider'=>'github']) }}" class="btn btn-github"> Github</a>
+    <script>
+        $(document).ready(function () {
+            toastr.options.timeOut = 10000;
+            @if (Session::has('error'))
+                toastr.error('{{ Session::get('error') }}');
+            @elseif(Session::has('success'))
+                toastr.success('{{ Session::get('success') }}');
+            @elseif(Session::has('warning'))
+                toastr.warning('{{ Session::get('warning') }}');
+            @endif
+        });
+    </script>
 </x-guest-layout>
+
