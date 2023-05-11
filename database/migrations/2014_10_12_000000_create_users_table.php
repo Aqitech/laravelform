@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('profile_pic')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->bigInteger('points')->default(0);
             $table->string('password')->nullable();
             $table->boolean('admin')->default(0);
             $table->rememberToken();

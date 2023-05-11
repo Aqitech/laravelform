@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Discussion;
 use App\Models\Reply;
+use App\Models\User;
+use Notification;
 use Session;
 use Auth;
 
@@ -41,9 +43,10 @@ class DiscussionController extends Controller
     public function show($slug)
     {
         $discussion = Discussion::where('slug', $slug)->first();
+        $best_answer = $discussion->replies()->where('best_answer',1)->first();
         $title = $discussion->title;
 
-        return view('discussions.show')->with(compact('title','discussion'));
+        return view('discussions.show')->with(compact('title','discussion','best_answer'));
     }
 
     public function reply($id, Request $request) {
@@ -58,6 +61,14 @@ class DiscussionController extends Controller
             'discussion_id' => $id,
             'content' => $request->reply
         ]);
+
+        $watchers = array();
+
+        foreach ($discussion->watches as $watcher) {
+            array_push($watchers, User::find($watcher->user_id));
+        }
+
+        Notification::send($watchers, new \App\Notifications\NewReplyAdded($discussion));
 
         Session::flash('success', 'Your reply send Successfuly!');
         return redirect()->back();

@@ -6,6 +6,7 @@ use App\Http\Controllers\SocialsController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\RepliesController;
 use App\Http\Controllers\FormsController;
+use App\Http\Controllers\WatchController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -47,6 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/reply/dislike/{id}',[RepliesController::class, 'dislike'])->name('reply.dislike');
     Route::get('/reply/like/{id}',[RepliesController::class, 'like'])->name('reply.like');
+    Route::get('/discussion/best-answer/{id}',[RepliesController::class, 'best_answer'])->name('discussion.best.answer');
+
+    Route::get('/discussion/watch/{id}', [WatchController::class, 'watch'])->name('discussion.watch');
+    Route::get('/discussion/unwatch/{id}', [WatchController::class, 'unwatch'])->name('discussion.unwatch');
 });
 
 require __DIR__.'/auth.php';
