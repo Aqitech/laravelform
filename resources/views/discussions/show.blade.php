@@ -25,17 +25,20 @@
                                 </span>
                             </div>
                             <div>
+                                @if(Auth::id() == $discussion->user->id)
+                                    <a href="{{ route('discussion.edit', $discussion->slug) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit discussion</a>
+                                @endif 
                                 @if($discussion->is_being_watch_by_auth_user())
-                                <a href="{{ route('discussion.unwatch', $discussion->id) }}">Unwatch</a>
+                                <a href="{{ route('discussion.unwatch', $discussion->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Unwatch</a>
                                 @else
-                                <a href="{{ route('discussion.watch', $discussion->id) }}">Watch</a>
+                                <a href="{{ route('discussion.watch', $discussion->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Watch</a>
                                 @endif
                             </div>
                         </div>
-                        <div class="p-6 text-center">
-                            <h3 class="p-4">{{ $discussion->title }}</h3>
+                        <div class="p-6">
+                            <h3 class="p-4 text-center">{{ $discussion->title }}</h3>
                             <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                                {{ $discussion->content }}
+                                @markdown($discussion->content)
                             </p>
                         </div>
                         <div class="border-t-2 border-neutral-100 py-3 px-6 flex items-center dark:border-neutral-600 dark:text-neutral-50">
@@ -63,6 +66,11 @@
                                 {{ $reply->user->name }} ({{ $reply->user->points }} points), <b>{{ $reply->created_at->diffForHumans() }}</b>
                             </span>
                         </div>
+                        @if(Auth::id() == $reply->user->id)
+                            @if(!$reply->best_answer)
+                            <a href="{{ route('reply.edit', $reply->id) }}" class="bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit Reply</a>
+                            @endif
+                        @endif
                         @if($best_answer)
                             @if($best_answer->id == $reply->id)
                             <a href="javascript:;" class="bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Best answer</a>
@@ -77,7 +85,7 @@
                     <div class="p-6 text-center">
                         <h3 class="p-4">{{ $reply->title }}</h3>
                         <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            {{ $reply->content }}
+                            @markdown($reply->content)
                         </p>
                     </div>
                     <div class="border-t-2 border-neutral-100 py-3 px-6 flex items-center dark:border-neutral-600 dark:text-neutral-50">

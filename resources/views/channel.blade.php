@@ -15,17 +15,20 @@
                 <div class="p-6 text-gray-900">
                     @foreach($discussions as $discussion)
                     <div class="block rounded-lg bg-white dark:bg-neutral-700 mb-6">
-                        <div class="border-b-2 border-neutral-100 py-3 px-6 flex items-center dark:border-neutral-600 dark:text-neutral-50">
-                            <div>
+                        <div class="border-b-2 border-neutral-100 py-3 px-6 flex justify-between items-center dark:border-neutral-600 dark:text-neutral-50">
+                            <div class="flex items-center">
                                 @if($discussion->user->profile_pic != '')
                                 <img src="{{ $discussion->user->profile_pic }}" alt="{{ $discussion->user->name }}" width="70" height="70">
                                 @else
                                 <img src="{{ url('user.png') }}" alt="{{ $discussion->user->name }}" width="70" height="70">
                                 @endif
+                                <span>{{ $discussion->user->name }}, <b>{{ $discussion->created_at->diffForHumans() }}</b></span>
                             </div>
-                            <div class="ml-3">
-                                {{ $discussion->user->name }}, <b>{{ $discussion->created_at->diffForHumans() }}</b>
-                            </div>
+                            @if($discussion->hasBestanswer())
+                            <a href="javascript:;" class="bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Close</a>
+                            @else
+                            <a href="javascript:;" class="bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Open</a>
+                            @endif
                         </div>
                         <div class="p-6 text-center">
                             <a href="{{ route('discussion.show', ['slug' => $discussion->slug ]) }}"><h3 class="p-4">{{ $discussion->title }}</h3></a>

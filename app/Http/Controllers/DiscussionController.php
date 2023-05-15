@@ -13,11 +13,10 @@ use Auth;
 
 class DiscussionController extends Controller
 {
-    public function create()
-    {
+    public function create() {
         $title = 'Create Discussion';
 
-        return view('discussion')->with(compact('title'));
+        return view('discussions.add')->with(compact('title'));
     }
 
     public function store(Request $request)
@@ -37,6 +36,27 @@ class DiscussionController extends Controller
         ]);
 
         Session::flash('success', 'Discussion Created Successfuly!');
+        return redirect()->route('discussion.show', ['slug' => $discussion->slug]);
+    }
+
+    public function edit($slug) {
+        $title = 'Edit Discussion';
+        $discussion = Discussion::where('slug', $slug)->first();
+
+        return view('discussions.edit')->with(compact('title', 'discussion'));
+    }
+
+    public function update($id, Request $request) {
+        $this->validate($request, [
+            'content' => 'required'
+        ]);
+
+        $discussion = Discussion::find($id);
+
+        $discussion->content = $request->content;
+        $discussion->save();
+
+        Session::flash('success', 'Discussion Updated Successfuly!');
         return redirect()->route('discussion.show', ['slug' => $discussion->slug]);
     }
 

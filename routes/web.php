@@ -44,11 +44,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/discussion/create/new', [DiscussionController::class, 'create'])->name('discussion.create');
     Route::post('/discussion/store', [DiscussionController::class, 'store'])->name('discussion.store');
 
+    Route::get('/discussion/edit/{slug}', [DiscussionController::class, 'edit'])->name('discussion.edit');
+    Route::post('/discussion/update/{id}', [DiscussionController::class, 'update'])->name('discussion.update');
+
     Route::post('/discussion/reply/{id}', [DiscussionController::class, 'reply'])->name('discussion.reply');
 
     Route::get('/reply/dislike/{id}',[RepliesController::class, 'dislike'])->name('reply.dislike');
     Route::get('/reply/like/{id}',[RepliesController::class, 'like'])->name('reply.like');
     Route::get('/discussion/best-answer/{id}',[RepliesController::class, 'best_answer'])->name('discussion.best.answer');
+    Route::get('/reply/edit/{id}',[RepliesController::class, 'edit'])->name('reply.edit');
+    Route::post('/reply/update/{id}',[RepliesController::class, 'update'])->name('reply.update');
 
     Route::get('/discussion/watch/{id}', [WatchController::class, 'watch'])->name('discussion.watch');
     Route::get('/discussion/unwatch/{id}', [WatchController::class, 'unwatch'])->name('discussion.unwatch');

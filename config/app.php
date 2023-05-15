@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -193,6 +194,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
     ])->toArray(),
 
 ];

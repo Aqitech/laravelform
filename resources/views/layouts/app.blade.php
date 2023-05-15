@@ -13,6 +13,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -20,6 +21,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -47,6 +50,22 @@
                                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                                     <div class="p-6 text-gray-900">
                                         <a href="{{ route('discussion.create') }}" class="btn btn-success">Create A New Discussion</a>
+                                        <br>
+                                        <br>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <a href="{{ route('form') }}">Fourm</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="/form?filter=me">My Discussions</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="/form?filter=solved">All Answered Discussions</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="/form?filter=unsolved">All Unanswered Discussions</a>
+                                            </li>
+                                        </ul>
                                         <br>
                                         <br>
                                         <ul class="list-group">
